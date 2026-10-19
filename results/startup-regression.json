@@ -1,0 +1,100 @@
+{
+  "title": "Current-weight startup-sweep regression check",
+  "date": "2026-10-19",
+  "training_run_id": "joint_daylight_v3_20261019T060549",
+  "video_attempt": "20261019T154412_485907_c0b488f8",
+  "code_commit": "7a3fd991d6c0e85e050e593c76fd895d59d516ed",
+  "dataset_manifest_sha256": "6033b599d62394cf40a410f28e505ae786a884d320a00003d5b055c907f7f245",
+  "selected_epochs": {
+    "localizer": 5,
+    "speed": 0,
+    "rpm": 14
+  },
+  "weight_sha256": {
+    "localizer": "e3d6cac90715685f0e7075ac6e4e729d0fc37423c7e8df0785e3f3d4643f591e",
+    "speed": "af2bc4b1736c71cb74cd0368d654da7856a2d057b7328162380adc99a90611be",
+    "rpm": "55e585494d7feba30f5f60e4765db711b1836ed4074215ce92d2df4f13176012"
+  },
+  "source_recording_sha256": "6125503654f3d2a06ac67765bfc4f5af670f027335a501d50e2a88412b8ffaf9",
+  "source_recording_bytes": 3173949,
+  "dimensions_height_width": [
+    368,
+    400
+  ],
+  "frames_processed": 541,
+  "source_frame_range_inclusive": [
+    0,
+    540
+  ],
+  "source_average_fps": 30.070015149260044,
+  "output_playback_fps": 30.03054845051529,
+  "full_frame_preserved": true,
+  "execution": {
+    "device": "cuda",
+    "precision": "autocast_float16",
+    "torch_num_threads": 1,
+    "location": "Google Colab",
+    "inference_only": true,
+    "accelerator": "NVIDIA T4",
+    "batch_size": 16
+  },
+  "status_counts": {
+    "speed_status": {
+      "available": 272,
+      "needle_outside_calibrated_speed_arc": 117,
+      "predicted_pivot_inconsistent_with_tick_plane": 68,
+      "too_few_consistent_speed_ticks": 77,
+      "projective_horizon_crosses_geometry": 7
+    },
+    "rpm_status": {
+      "degenerate_rpm_roi": 457,
+      "rpm_endpoint_outside_visible_anchor_interval": 20,
+      "available": 54,
+      "rpm_endpoint_too_far_from_scale": 10
+    },
+    "lcd_status": {
+      "detected": 528,
+      "unavailable": 13
+    }
+  },
+  "availability": {
+    "speed_available": 272,
+    "rpm_available": 54
+  },
+  "actual_task_inference_frames": {
+    "localizer": 541,
+    "speed": 541,
+    "rpm": 84,
+    "all_three": 84
+  },
+  "prediction_pipeline_fps": 35.78160157187607,
+  "full_output_fps": 20.656149700808967,
+  "timing_seconds": {
+    "initial_probe_seconds": 1.3545506439999997,
+    "decode_seconds": 0.5752025860000458,
+    "model_pipeline_seconds": 15.119502097000037,
+    "draw_seconds": 1.2327600420004785,
+    "intermediate_encode_seconds": 0.8446915300002047,
+    "prediction_log_seconds": 0.12187208299980057,
+    "h264_encode_seconds": 6.0034695399999976,
+    "output_verification_seconds": 0.8259784630000127,
+    "total_processing_seconds": 26.190747445
+  },
+  "work_scope": "Conditional work: localizer runs every frame; speed requires a localized dashboard, RPM requires a valid RPM region. Pipeline FPS is not a benchmark with all three readers forced on every frame. Rejected numeric readings can still have executed their reader.",
+  "timing_scope": "Model pipeline includes preprocessing, prediction and geometry; CUDA execution is synchronized before predict_frames returns, and CPU execution is synchronous. Model construction and Drive IO are excluded from per-video processing time and included in run wall time.",
+  "warmup_policy": "No frames are discarded for warmup. First-batch startup costs are included. Models remain loaded across source videos.",
+  "output_sha256_and_bytes": {
+    "sha256": "50e21e231d1e6b65714c0e6cba2c344a48cc6a498e29a23676563f3e17082c0c",
+    "bytes": 3731613
+  },
+  "evidence_report_sha256": "dbf0b8a61b311c14ce1a103b5cde2f117d9b327e3e456648cabe20e86f231412",
+  "evidence_csv_sha256": "c31d95668d2de474e33b16fc5cafb44ece5891827ffd091c77debf2cf0509abd",
+  "limits": [
+    "Development regression check, not an independent accuracy test.",
+    "Availability and LCD detection are not correctness metrics.",
+    "Instrument self-test animation is not road-speed or engine-RPM ground truth.",
+    "Earlier V3 and current outputs differ in model and preprocessing; not an isolated training comparison.",
+    "Pipeline throughput includes conditional model calls. RPM executed on only 84 of 541 frames.",
+    "No new inference was performed to prepare this publication."
+  ]
+}

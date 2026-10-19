@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="710" viewBox="0 0 1440 710" role="img" aria-labelledby="title desc">
+<title id="title">Research evolution: speed and RPM</title>
+<desc id="desc">Two experiment tracks: needle cues to ring landmarks, masking and dashboard localization; reference RPM strip to learned fill, LCD rectification and learned scale anchors. Later versions can regress.</desc>
+<rect width="1440" height="710" rx="20" fill="#101b2b"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8093aa"/></marker></defs>
+<text x="36" y="53" font-family="Segoe UI,Arial,sans-serif" font-size="36" fill="#ffffff" font-weight="700">How the approach changed</text>
+<text x="36" y="89" font-family="Segoe UI,Arial,sans-serif" font-size="22" fill="#bdcddd" font-weight="400">Two research tracks. Each change addressed a failure; newer did not always mean better.</text>
+<text x="36" y="142" font-family="Segoe UI,Arial,sans-serif" font-size="20" fill="#4ce0dd" font-weight="700">SPEED</text>
+<rect x="36" y="160" width="248" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="54" y="191" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#4ce0dd" font-weight="700">01</text>
+<text x="54" y="224" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Needle cues</text>
+<text x="54" y="283" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Speed head + pivot/tip</text>
+<text x="54" y="307" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">One synthetic dial</text>
+<path d="M289 244 H304" stroke="#8093aa" stroke-width="3"/>
+<path d="M302 239 L310 244 L302 249 Z" fill="#8093aa"/>
+<rect x="316" y="160" width="248" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="334" y="191" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#4ce0dd" font-weight="700">02</text>
+<text x="334" y="224" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Ring + named ticks</text>
+<text x="334" y="283" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Angle relative to scale</text>
+<text x="334" y="307" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Bad ticks reject readings</text>
+<path d="M569 244 H584" stroke="#8093aa" stroke-width="3"/>
+<path d="M582 239 L590 244 L582 249 Z" fill="#8093aa"/>
+<rect x="596" y="160" width="248" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="614" y="191" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#4ce0dd" font-weight="700">03</text>
+<text x="614" y="224" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Real dial +</text>
+<text x="614" y="251" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">LCD mask</text>
+<text x="614" y="283" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Reference ticks → learned</text>
+<text x="614" y="307" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Wrong mask hid needle</text>
+<path d="M849 244 H864" stroke="#8093aa" stroke-width="3"/>
+<path d="M862 239 L870 244 L862 249 Z" fill="#8093aa"/>
+<rect x="876" y="160" width="248" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="894" y="191" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#4ce0dd" font-weight="700">04</text>
+<text x="894" y="224" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Learned LCD mask</text>
+<text x="894" y="283" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Locate screen each frame</text>
+<text x="894" y="307" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">No reference matching</text>
+<path d="M1129 244 H1144" stroke="#8093aa" stroke-width="3"/>
+<path d="M1142 239 L1150 244 L1142 249 Z" fill="#8093aa"/>
+<rect x="1156" y="160" width="248" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="1174" y="191" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#4ce0dd" font-weight="700">05</text>
+<text x="1174" y="224" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Dashboard</text>
+<text x="1174" y="251" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">localizer</text>
+<text x="1174" y="283" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Head crop + precise mask</text>
+<text x="1174" y="307" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Separate reader inputs</text>
+<text x="36" y="364" font-family="Segoe UI,Arial,sans-serif" font-size="20" fill="#aebfd0" font-weight="400">View experiments along the way: full-circle roll → real tilted frames → mixed day/night views.</text>
+<text x="36" y="411" font-family="Segoe UI,Arial,sans-serif" font-size="20" fill="#d5b4ff" font-weight="700">RPM</text>
+<rect x="36" y="429" width="318" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="54" y="460" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#d5b4ff" font-weight="700">A</text>
+<text x="54" y="493" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Reference LCD strip</text>
+<text x="54" y="552" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Align, crop and enlarge</text>
+<text x="54" y="576" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Manual scale + fill edge</text>
+<path d="M359 513 H374" stroke="#8093aa" stroke-width="3"/>
+<path d="M372 508 L380 513 L372 518 Z" fill="#8093aa"/>
+<rect x="386" y="429" width="318" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="404" y="460" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#d5b4ff" font-weight="700">B</text>
+<text x="404" y="493" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Learned fill / readability</text>
+<text x="404" y="552" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Preserve scale and aspect</text>
+<text x="404" y="576" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Scripted synthetic bar states</text>
+<path d="M709 513 H724" stroke="#8093aa" stroke-width="3"/>
+<path d="M722 508 L730 513 L722 518 Z" fill="#8093aa"/>
+<rect x="736" y="429" width="318" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="754" y="460" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#d5b4ff" font-weight="700">C</text>
+<text x="754" y="493" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Detected LCD → warp</text>
+<text x="754" y="552" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Remove CPU feature matching</text>
+<text x="754" y="576" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Corner ambiguity distorted crop</text>
+<path d="M1059 513 H1074" stroke="#8093aa" stroke-width="3"/>
+<path d="M1072 508 L1080 513 L1072 518 Z" fill="#8093aa"/>
+<rect x="1086" y="429" width="318" height="168" rx="12" fill="#192a40" stroke="#354b65"/>
+<text x="1104" y="460" font-family="Segoe UI,Arial,sans-serif" font-size="17" fill="#d5b4ff" font-weight="700">D</text>
+<text x="1104" y="493" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#ffffff" font-weight="600">Learned scale anchors</text>
+<text x="1104" y="552" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">0, 2, …, 12 + bar endpoint</text>
+<text x="1104" y="576" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#c2d0df" font-weight="400">Wider semantic RPM region</text>
+<text x="36" y="642" font-family="Segoe UI,Arial,sans-serif" font-size="24" fill="#ffffff" font-weight="600">Keep the speed mask tight. Preserve the full RPM scale in its own crop.</text>
+<text x="36" y="679" font-family="Segoe UI,Arial,sans-serif" font-size="20" fill="#aebfd0" font-weight="400">The current workflow trains three models sequentially. It is not one end-to-end model.</text>
+</svg>

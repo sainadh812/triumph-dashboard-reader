@@ -1,13 +1,13 @@
 # Triumph dashboard reader
 
-Reading the analog speedometer and LCD RPM bar on a Triumph Scrambler 400 XC. Built from a synthetic dial, then trained with reviewed daylight and night video frames.
+An experiment in reading a Triumph Scrambler 400 XC: from one synthetic needle to ring landmarks, LCD masking, dashboard localization and RPM scale reading. This is the research trail, including the changes that helped and the ones that broke earlier behavior.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sainadh812/triumph-dashboard-reader/blob/v0.1.0/notebooks/Test_Your_Video.ipynb)
-[**Download selected weights**](https://github.com/sainadh812/triumph-dashboard-reader/releases/tag/v0.1.0) · [Experiment archive](https://github.com/sainadh812/triumph-speedometer-dataset)
+[Selected weights](https://github.com/sainadh812/triumph-dashboard-reader/releases/tag/v0.1.0) · [Experiment notes](EXPERIMENTS.md) · [Code and dataset archive](https://github.com/sainadh812/triumph-speedometer-dataset)
 
 ## Watch the detections
 
-Two earlier speed experiments, with the original input and prediction overlays. Press **Play** on either video.
+Two earlier speed experiments. Press **Play** on either video.
 
 ### Startup sweep · 0 → 180 → 0
 
@@ -19,26 +19,58 @@ https://github.com/user-attachments/assets/69754f0d-e5bc-48b1-8273-85c016cad984
 
 https://github.com/user-attachments/assets/56c0f28d-c2bb-467c-b0f4-466a1ae7727e
 
-**12 seconds · V4, epoch 17.** Predicted needle and named ticks follow the angled dial. Original frame on the left; masked model input on the right.
+**12 seconds · V4, epoch 17.** Predicted needle and named ticks. Original frame on the left; masked model input on the right.
 
-These recordings were used during development. They show earlier behavior, not an independent accuracy test of the current weights. [Clip provenance](assets/historical-video-provenance.json).
+Both recordings were used during development. These are earlier models, not an independent test of the current weights. [Clip provenance](assets/historical-video-provenance.json).
+
+## Research path
+
+![Speed: needle cues, ring landmarks, real dial and masking, learned LCD mask, dashboard localization. RPM: reference strip, learned fill, LCD warp, learned scale anchors.](assets/research-evolution.svg)
+
+### Arc and needle annotations
+
+![Early dial design: cyan arc, yellow scale anchors and pink needle pivot and tip](assets/arc-needle-annotation.png)
+
+We began with **500 scripted grayscale images** from one reconstructed dial. The first network predicted speed directly, with needle pivot/tip as auxiliary targets. Ring landmarks came next: estimate the needle angle **relative to named scale positions**, rather than rely on image orientation.
+
+This ImageGen-reconstructed source has annotations added in code: cyan arc, six visible yellow anchors, pink pivot/tip. Orange marks an occluded region. These are labels, not predictions; later versions learned ten tick positions.
+
+### The LCD mask helped—until the camera view changed
+
+Masking keeps changing gear/trip digits out of the analog-speed reader.
+
+| Earlier night-view mask on the day video | Day-view data, corrected mask and learned ticks |
+|---|---|
+| ![Misplaced LCD mask hides the hub; reading rejected](assets/research-mask-before.jpg) | ![Fitted mask preserves the needle; model displays 48.6 km/h](assets/research-mask-after.jpg) |
+
+**Same source frame.** The old mask covered the hub. Removing it alone did not fix that model. We added actual day-view training plates, fitted the mask and trained named ticks together. This shows the combined change, not the effect of masking alone.
+
+Next came mixed straight/tilted views, a learned LCD mask, then a **dashboard localizer** to produce the regions for both readers. Rotation augmentation helped camera roll; it could not reproduce every physical viewpoint.
+
+### RPM: finding the screen was only the beginning
+
+![Early RPM prototype: original frame, aligned LCD and enlarged scale strip with manual anchors](assets/research-rpm-prototype.jpg)
+
+The first RPM prototype aligned the LCD to a reference, cropped and enlarged its scale, then used manually marked readings and a fill edge. The first neural reader learned **fill fraction + readability**. Later we used the detected LCD to position that crop—but a plausible LCD outline could still produce a distorted scale.
 
 <details>
-<summary>More previews: recent daylight and night</summary>
+<summary>See the synthetic strip and the crop failure</summary>
 
-| Daylight | Night |
-|---|---|
-| ![Saved daylight predictions](assets/demo-day.gif) | ![Saved night predictions](assets/demo-night.gif) |
+![Real unlabeled RPM strip beside a scripted synthetic fill state](assets/research-rpm-synthetic.png)
 
-Preview clips from the saved CPU test. GPU frame comparisons are below. Readings are estimates; glare and empty RPM bars still cause errors.
+Early scripted synthesis preserved the curved scale and excluded gear/trip text. The displayed synthetic RPM is a draft target, not measured engine RPM.
+
+![Same frame through reference matching and detected-LCD positioning; bottom panels expose different RPM crops](assets/research-rpm-warp-failure.jpg)
+
+The detected-LCD warp clipped part of the scale and admitted the display border. Both displayed readings are **unvalidated raw outputs** from a diagnostic with checks disabled; neither is ground truth. Enlarging the wrong crop did not fix its contents.
 
 </details>
 
-## Try a video
+The current design learns corresponding LCD corners and a **separate, wider RPM region**, then predicts **0, 2, 4, …, 12 scale anchors and the bar endpoint**. These are named landmarks, not digit OCR. The speed mask stays tight while the RPM crop preserves scale context.
 
-Open Colab → select GPU (or CPU) → run setup → upload your video → download the labeled MP4 and reports. **No Drive sign-in required.** The full frame stays visible, with needle, ticks, LCD outline and larger RPM text. Save downloads before disconnecting the runtime.
+[Stage-by-stage decisions and evidence](EXPERIMENTS.md) · [Image sources and hashes](assets/research-provenance.json)
 
-## How it works
+## Current pipeline
 
 ![Actual input regions and model outputs](assets/pipeline.png)
 
@@ -48,75 +80,64 @@ Open Colab → select GPU (or CPU) → run setup → upload your video → downl
 | Speed | Dashboard, 512 × 512; LCD filled gray | Needle pivot/tip and named ticks |
 | RPM | Rectified scale, 256 wide × 384 high | 0–12 scale anchors and bar endpoint |
 
-Three MobileNetV3-Small models; grayscale inputs. Geometry converts landmarks into readings. A reader runs only when its region is usable. Unavailable readings keep their rejection reason in the report. Gear and odometer are not implemented.
+Three MobileNetV3-Small models trained sequentially in one workflow. Inputs remain grayscale; geometry converts landmarks to readings. Gear and odometer are not implemented.
 
-### Arc and needle annotations
+Latest data: **94 reviewed source frames → 8,864 task-specific training inputs**. Daylight is sampled more often while retaining night data. Each source's variants stay in one split. Bulk synthesis uses scripts/OpenCV; early source cleanup used ImageGen. [Data decisions](EXPERIMENTS.md#data-and-training-decisions).
 
-![Early dial annotation design: cyan scale arc, yellow tick anchors and pink needle pivot and tip](assets/arc-needle-annotation.png)
+## A later version regressed on the startup video
 
-ImageGen-reconstructed source with annotations added in code. **Cyan:** scale arc · **yellow:** six visible tick anchors · **pink:** needle pivot and tip. Orange marks the needle-occluded region. This is the early labeling design, not model predictions.
+| Earlier V3: predicted needle + reference ticks | Current: learned localizer + learned ticks |
+|---|---|
+| ![Earlier model follows the visible needle at source frame 480](assets/research-startup-earlier.png) | ![Current model misplaces landmarks and withholds the readings at the same frame](assets/research-startup-current.png) |
 
-## What changed along the way
+**Same recording, frame 480.** This is a failure example across different pipelines, not an isolated training or hardware comparison. The earlier displayed number is not ground truth.
 
-| Problem | Decision | What we learned |
-|---|---|---|
-| Clean synthetic images looked easier than real video | Add reviewed real day/night frames | Synthetic success did not establish real-camera accuracy. |
-| Needle direction alone missed camera pose | Predict named ticks as well | Geometry needs reliable anchors. |
-| Fixed LCD masks covered the needle | Learn dashboard/LCD regions | Keep the speed mask precise; give RPM its own crop. |
-| One camera view displaced another | Mix views and lighting; retain old validation | Rotation and mirrors do not create a new physical viewpoint. |
-| Augmentation erased labeled detail | Review crops; reject destructive appearance changes | More variation is useful only while labels remain credible. |
-| Fine-tuning sometimes got worse | Include starting weights in checkpoint selection | Latest speed training kept **epoch 0**. |
+Across **541 frames**, the current run detected LCD in **528**, displayed speed in **272**, and displayed RPM in **54**. On **457 frames**, invalid RPM-region geometry prevented the RPM reader from running. A visible LCD did not guarantee a usable crop. Availability is not accuracy. [Counts and timings](results/startup-regression.json).
 
-![Rejected augmentation and preserved details](assets/augmentation-guard.png)
-
-Latest dataset: **94 reviewed source frames → 8,864 training inputs** across three tasks. Daylight gets more sampling weight; night remains included. Labels follow geometry, and every source's variants stay in one split. Bulk synthesis uses scripts/OpenCV; early source cleanup used ImageGen. Full recordings and the current training dataset are not bundled. [Earlier experiments and generators](EXPERIMENTS.md).
-
-## Prediction quality
-
-Latest selected epochs: **localizer 5 · speed 0 · RPM 14**. Both GPU tests use matching frames from the same day/night recordings. Inspect the needle, named ticks and RPM endpoint; changed numbers alone do not establish better predictions.
-
-![Earlier and selected weights on the same clear daylight frame, both GPU](assets/gpu-day-clear.png)
+The next checkpoint-selection rule should include fixed old-view clips, separate day/night results and the **complete pipeline**, including crops. Better results on a new view must not hide a regression on an old one.
 
 <details>
-<summary>Night and glare: matching GPU frames</summary>
+<summary>Other current results: matching GPU frames and remaining errors</summary>
+
+Selected epochs: **localizer 5 · speed 0 · RPM 14**. Speed kept its starting weights because fine-tuning did not improve validation.
+
+![Earlier and selected weights on the same clear daylight frame, both GPU](assets/gpu-day-clear.png)
 
 ![Earlier and selected weights on the same clear night frame, both GPU](assets/gpu-night-clear.png)
 
 ![Both GPU runs withhold readings on this glare frame](assets/gpu-day-glare.png)
 
-</details>
+![Selected GPU weights still report 259 RPM on an empty bar](assets/gpu-day-empty-bar.png)
 
-![Selected GPU weights still report RPM on an empty bar](assets/gpu-day-empty-bar.png)
+The empty bar still produces **259 RPM**. We have not established an overall speed/RPM accuracy improvement.
 
-**Still failing:** the empty bar produces **259 RPM** with the selected weights. The glare example is withheld by both GPU runs. We have not established an overall speed/RPM accuracy improvement.
+![Validation changes on small day/night groups](assets/validation-changes.png)
 
-<details>
-<summary>What validation changed</summary>
-
-![Selected validation changes](assets/validation-changes.png)
-
-Night RPM endpoint error improved; speed weights stayed unchanged. These are small validation groups from the same recordings, not an independent accuracy benchmark.
+Night RPM endpoint validation improved; these small groups share source recordings with development. [Metrics](results/summary.json) · [GPU frame provenance](assets/gpu-qualitative-provenance.json).
 
 </details>
 
-The latest GPU test processed **7,201 frames** across two two-minute windows. Availability means a reading was displayed, not that it was correct. [Metrics](results/summary.json) · [GPU frame provenance](assets/gpu-qualitative-provenance.json).
+## Try a video
+
+Open Colab → select GPU or CPU → run setup → upload your video → download the labeled MP4 and reports. **No Drive sign-in required.** The full frame stays visible, with needle, ticks, LCD outline and larger RPM text. These are experimental weights; inspect the output. Save downloads before disconnecting.
 
 ## GPU measurements
 
-**Colab T4 · batch 16 · float16 autocast · 19 October 2026.** Selected dashboard/LCD, speed and RPM pipeline; each clip covers the last two minutes of its recording.
+**Colab T4 · batch 16 · float16 autocast · 19 October 2026.** Day/night clips cover their recordings' last two minutes; startup covers the full short clip.
 
-| Clip | Frames | Prediction FPS | Full-output FPS | Total processing time |
+| Clip | Frames | Prediction FPS | Full-output FPS | Processing time |
 |---|---:|---:|---:|---:|
 | Daylight · 848 × 478 | 3,602 | **52.90** | **15.34** | 234.80 s |
 | Night · 1280 × 720 | 3,599 | **53.19** | **8.84** | 407.05 s |
+| Startup · 400 × 368 | 541 | **35.78** | **20.66** | 26.19 s |
 
-Prediction includes input preparation, conditional model calls and geometry. Full output also includes video decoding, overlays, logging, encoding and verification; model setup and Drive transfers are excluded. These are throughput measurements, not accuracy or training-improvement claims. [Exact timings and definitions](results/summary.json).
+Prediction includes preparation, conditional model calls and geometry. Full output adds decoding, overlays, logging, encoding and verification; setup and Drive transfers are excluded. RPM ran on only **84/541** startup frames. These are measured pipeline workloads, not three models forced on every frame or accuracy claims. [Day/night timings](results/summary.json) · [Startup timings](results/startup-regression.json).
 
 <details>
 <summary>Separate CPU and GPU measurements</summary>
 
 ![Independent CPU and GPU measurements](assets/timing-context.png)
 
-Hardware timings describe execution cost. They do not show a training improvement. Compare FPS before/after only with the same hardware, clips, precision, batch size and processing steps.
+Hardware timings describe execution cost, not a training improvement. Compare FPS before/after only with matching hardware, clips, precision, batch size and processing steps.
 
 </details>

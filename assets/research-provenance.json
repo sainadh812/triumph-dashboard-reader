@@ -1,0 +1,60 @@
+{
+  "scope": "Research history visuals. Saved outputs and reviewed inputs remain unchanged; timeline is a schematic.",
+  "new_model_execution": false,
+  "assets": {
+    "research-mask-before.jpg": {
+      "source_asset": "real_adaptation_v3/video_inference_174359_epoch8/preview_0000.jpg",
+      "sha256": "034f9ed257c6d76781c0b1bb94e56efc4eed7b78d7a508e7b0bdbadb1f41da0e",
+      "copied_unchanged": true
+    },
+    "research-mask-after.jpg": {
+      "source_asset": "real_adaptation_v4/video_inference_174359_epoch17_cv414/preview_0000.jpg",
+      "sha256": "9b24685835c520e7098de997d3ff1b46b562930530241bfb5e347cf2083b0475",
+      "copied_unchanged": true
+    },
+    "research-rpm-prototype.jpg": {
+      "source_asset": "rpm_prototype/review20/previews/15_220558_frame_0338.jpg",
+      "sha256": "01f5754b28d18f34241201deb47a5e55d79ce60ababba4fb7543e7c931c04322",
+      "copied_unchanged": true
+    },
+    "research-rpm-synthetic.png": {
+      "source_asset": "rpm_training_v1/qa/real_vs_synthetic.png",
+      "sha256": "27c00f1da982ef8dc4c6cdc9a868b958cbc8a9b6b23edbb42849b41f0e464407",
+      "copied_unchanged": true
+    },
+    "research-rpm-warp-failure.jpg": {
+      "source_asset": "learned_lcd_v1/account2_gpu/failure_review_20261018/paired_frame_064.jpg",
+      "sha256": "2905c90ea53a6d3d9ff59dbb8e88bdbf7dec38c41f58679ba0b0e0cbdc328f9e",
+      "copied_unchanged": true
+    },
+    "research-startup-earlier.png": {
+      "source_output_basename": "Triumph_V3_epoch8_181323_30fps_predictions.mp4",
+      "source_output_sha256": "57dbda9aaaaa71575234569d95a90a372be0f0d5ea106630d6f57fe4792665ee",
+      "source_recording_sha256": "6125503654f3d2a06ac67765bfc4f5af670f027335a501d50e2a88412b8ffaf9",
+      "zero_based_source_frame_index": 480,
+      "output_frame_index": 480,
+      "sha256": "9b99c173bf905c7f8ed5e0249fc9cef8969ed98a61829852560af1b0b5df98c0",
+      "operation": "Decode one saved output frame; no crop, resize, added labels, or new inference"
+    },
+    "research-startup-current.png": {
+      "source_output_basename": "Triumph_Startup_Speed_RPM_Current_20261019.mp4",
+      "source_output_sha256": "50e21e231d1e6b65714c0e6cba2c344a48cc6a498e29a23676563f3e17082c0c",
+      "source_recording_sha256": "6125503654f3d2a06ac67765bfc4f5af670f027335a501d50e2a88412b8ffaf9",
+      "zero_based_source_frame_index": 480,
+      "output_frame_index": 480,
+      "sha256": "7f92ac225b4df8c0108b3a799645dc9db508e22a578fa30e332dc473e2f8574a",
+      "operation": "Decode one saved output frame; no crop, resize, added labels, or new inference"
+    },
+    "research-evolution.svg": {
+      "kind": "Authored process diagram, not experimental output",
+      "sha256": "b31bdd87c9fbfa3043b59c54e0bc65749ef4932e42ba9bff0536719a3e3b30a8"
+    }
+  },
+  "comparison_limits": [
+    "Mask before/after also changes real training data and the tick model; not an isolated mask ablation.",
+    "Startup images use source frame 480 from the same recording; older V3 uses aligned reference ticks, current uses learned ticks and localizer.",
+    "Startup comparison is qualitative across different pipelines, not an isolated training comparison or a CPU/GPU performance comparison.",
+    "RPM prototype and synthetic targets have draft calibration, not measured engine-RPM ground truth.",
+    "RPM warp failure shows unvalidated raw outputs from an explicitly ungated diagnostic."
+  ]
+}
