@@ -1,0 +1,21 @@
+name: Offline contracts and video IO
+
+on: [push, pull_request]
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install lightweight test dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.10,<5'
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+      - name: Test without Torch or neural execution
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v

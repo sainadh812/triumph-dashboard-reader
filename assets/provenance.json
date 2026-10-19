@@ -1,0 +1,508 @@
+{
+  "format_version": 1,
+  "purpose": "Presentation assets derived from recorded development footage, saved model predictions and reviewed dataset QA. No neural execution or generated predictions were used to create these assets.",
+  "training_run": "joint_daylight_v3_20261019T060549",
+  "training_attempt": "20261019T061736_225434",
+  "video_attempt": "20261019T102041_944405_bd4d42d4",
+  "video_execution": {
+    "location": "Google Colab",
+    "device": "cpu",
+    "precision": "float32",
+    "batch_size": 4
+  },
+  "dataset_manifest_sha256": "6033b599d62394cf40a410f28e505ae786a884d320a00003d5b055c907f7f245",
+  "source_videos": {
+    "day": "076d4a01d96fb4fca3c98e425a5a3bf8a425c42441ffdc97b1edfe377ebe7d4b",
+    "night": "44affdd2d48fa43ddc5bf2ca0d6d25b14c0c73056af6b30ec4460940eeccae03"
+  },
+  "still_frames": {
+    "pipeline.png": {
+      "day_source_frame": 11312,
+      "time_seconds": 376.981889,
+      "speed_mask_note": "Reconstructed gray128 polygon from saved LCD contour; exact dense prediction mask was not exported. RPM crop uses the saved predicted quadrilateral and unchanged preprocessing."
+    },
+    "clear-day-night.png": {
+      "day_source_frame": 11312,
+      "night_source_frame": 10086
+    },
+    "glare-before-after.png": {
+      "day_source_frame": 11763,
+      "time_seconds": 392.0052,
+      "old_execution": "Colab GPU mixed precision",
+      "new_execution": "Colab CPU float32"
+    },
+    "empty-bar-failure.png": {
+      "day_source_frame": 13396,
+      "time_seconds": 446.402544
+    },
+    "augmentation-guard.png": {
+      "training_rows": [
+        "day_00_speed_003",
+        "night_05_rpm_009"
+      ],
+      "meaning": "before appearance augmentation, rejected appearance candidate, accepted exact preappearance fallback"
+    },
+    "dataset.png": {
+      "training_source_id": "day_v3_002",
+      "source_frame_index": 1258,
+      "source_time_seconds": 41.9853,
+      "source_split": "train",
+      "annotation_image_sha256": "ff7f85856359a590e84389084774555e302d6b0c48aa7c788997d89dde1b1082",
+      "training_rows": [
+        {
+          "id": "day_v3_002_speed_000",
+          "split": "train",
+          "image_sha256": "8f7cc25fd92f085f8b2b4653d7bb6825e7cd5adae376a9a4e94fefa7b0aa38fd",
+          "source_id": "day_v3_002",
+          "transform": [
+            [
+              1.0851785292006741,
+              0.0,
+              -416.7835321475715
+            ],
+            [
+              0.0,
+              1.0851785292006741,
+              -2.820510405730083
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "point_count": 12,
+          "visible_count": 12
+        },
+        {
+          "id": "day_v3_002_speed_003",
+          "split": "train",
+          "image_sha256": "173960e8da5ab109067aa153351dc15ab8d4306ddb5b06d6941e503b554e92a3",
+          "source_id": "day_v3_002",
+          "transform": [
+            [
+              1.0367722195664897,
+              0.20679609112818217,
+              -432.84578482888776
+            ],
+            [
+              -0.17021838093201286,
+              1.0427431993929868,
+              125.3640799836349
+            ],
+            [
+              -1.6916526809590975e-05,
+              6.385072852071215e-05,
+              1.010398303104055
+            ]
+          ],
+          "point_count": 12,
+          "visible_count": 12
+        },
+        {
+          "id": "day_v3_002_rpm_000",
+          "split": "train",
+          "image_sha256": "ff51f4f67e5dc64e9ac2d747c18b1d4310a36b09b2a7103f617a5feabc16f881",
+          "source_id": "day_v3_002",
+          "transform": [
+            [
+              2.096413497048185,
+              0.8588034931545565,
+              -1531.2060521585079
+            ],
+            [
+              -1.0688854994857462,
+              2.410828771760349,
+              243.43709756221747
+            ],
+            [
+              -0.00044365371789320795,
+              0.0003131518447595617,
+              1.0
+            ]
+          ],
+          "point_count": 8,
+          "visible_count": 8
+        },
+        {
+          "id": "day_v3_002_rpm_003",
+          "split": "train",
+          "image_sha256": "f62b48213f27a6acea9c3d75e99711805f0e7346613e733eb8538054e9ef25ba",
+          "source_id": "day_v3_002",
+          "transform": [
+            [
+              2.4687905203822096,
+              0.89296024690305,
+              -1768.7365155159048
+            ],
+            [
+              -1.1160076842595477,
+              2.854237135972459,
+              180.75620118628163
+            ],
+            [
+              -0.00044632976808916424,
+              0.0007417532560827858,
+              1.0353596321760423
+            ]
+          ],
+          "point_count": 8,
+          "visible_count": 8
+        }
+      ],
+      "presentation_crop": "Original and annotation panels cropped to dashboard annotation bounds plus12px; exported model-input panels retain complete input."
+    }
+  },
+  "demos": [
+    {
+      "asset": "demo-day.gif",
+      "source_video_label": "day",
+      "output_video_sha256": "adf55aaff906908c2f3c16985e7523f1b35464eac3f0c3aff33ca3b1575012bd",
+      "source_frame_indices": [
+        10952,
+        10956,
+        10960,
+        10963,
+        10967,
+        10971,
+        10975,
+        10978,
+        10982,
+        10986,
+        10990,
+        10993,
+        10997,
+        11001,
+        11005,
+        11008,
+        11012,
+        11016,
+        11020,
+        11023,
+        11027,
+        11031,
+        11035,
+        11038
+      ],
+      "source_times_seconds": [
+        364.989889,
+        365.123133,
+        365.256378,
+        365.356311,
+        365.489556,
+        365.6228,
+        365.756044,
+        365.855978,
+        365.989222,
+        366.122467,
+        366.255711,
+        366.355644,
+        366.488889,
+        366.622133,
+        366.755378,
+        366.855311,
+        366.988556,
+        367.1218,
+        367.255044,
+        367.354978,
+        367.488222,
+        367.621467,
+        367.754711,
+        367.854644
+      ],
+      "source_output_clip_indices": [
+        1036,
+        1040,
+        1044,
+        1047,
+        1051,
+        1055,
+        1059,
+        1062,
+        1066,
+        1070,
+        1074,
+        1077,
+        1081,
+        1085,
+        1089,
+        1092,
+        1096,
+        1100,
+        1104,
+        1107,
+        1111,
+        1115,
+        1119,
+        1122
+      ],
+      "presentation": {
+        "duration_seconds": 3,
+        "sample_fps": 8,
+        "dimensions": [
+          640,
+          520
+        ],
+        "crop": "union of saved dashboard bounding boxes plus 4.5% margin",
+        "header_values": "verbatim numerical values from saved prediction records, rounded for display",
+        "gif_frame_delays_ms": [
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130
+        ]
+      },
+      "not_inference_throughput": true
+    },
+    {
+      "asset": "demo-night.gif",
+      "source_video_label": "night",
+      "output_video_sha256": "7847577b8c024f1538f7a1db9b5a5d8937c1d9d77b217a834bf439aee006b7c6",
+      "source_frame_indices": [
+        10086,
+        10090,
+        10093,
+        10097,
+        10101,
+        10105,
+        10108,
+        10112,
+        10116,
+        10120,
+        10123,
+        10127,
+        10131,
+        10135,
+        10138,
+        10142,
+        10146,
+        10150,
+        10153,
+        10157,
+        10161,
+        10165,
+        10168,
+        10172
+      ],
+      "source_times_seconds": [
+        336.337544,
+        336.4709,
+        336.570911,
+        336.704256,
+        336.8376,
+        336.970956,
+        337.070967,
+        337.204322,
+        337.338689,
+        337.472044,
+        337.572056,
+        337.7054,
+        337.838756,
+        337.972111,
+        338.072111,
+        338.205456,
+        338.338811,
+        338.472156,
+        338.572178,
+        338.705522,
+        338.838878,
+        338.972222,
+        339.072244,
+        339.205589
+      ],
+      "source_output_clip_indices": [
+        1050,
+        1054,
+        1057,
+        1061,
+        1065,
+        1069,
+        1072,
+        1076,
+        1080,
+        1084,
+        1087,
+        1091,
+        1095,
+        1099,
+        1102,
+        1106,
+        1110,
+        1114,
+        1117,
+        1121,
+        1125,
+        1129,
+        1132,
+        1136
+      ],
+      "presentation": {
+        "duration_seconds": 3,
+        "sample_fps": 8,
+        "dimensions": [
+          640,
+          520
+        ],
+        "crop": "union of saved dashboard bounding boxes plus 4.5% margin",
+        "header_values": "verbatim numerical values from saved prediction records, rounded for display",
+        "gif_frame_delays_ms": [
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130,
+          120,
+          130
+        ]
+      },
+      "not_inference_throughput": true
+    }
+  ],
+  "limits": [
+    "Availability is not accuracy.",
+    "Selected examples are illustrative, not a random accuracy sample.",
+    "The underlying 94 real annotation sources and development heldouts come from two recordings; augmented images are not independent scenes.",
+    "Earlier GPU and current CPU throughput differ in hardware, precision and conditional reader coverage.",
+    "No exact physical speed/RPM ground-truth accuracy is claimed."
+  ],
+  "assets": {
+    "augmentation-guard.png": {
+      "sha256": "c8bab2025be90f3d9a889a9aadbf50fbec012677cf6ec382cbe164ef069d1066",
+      "bytes": 167613,
+      "dimensions": [
+        1200,
+        824
+      ]
+    },
+    "clear-day-night.png": {
+      "sha256": "87dc3025551f59bbe994ee30ad198834f291fdf329a3949f760214e232f1d9ba",
+      "bytes": 461438,
+      "dimensions": [
+        1200,
+        740
+      ]
+    },
+    "demo-day.gif": {
+      "sha256": "ecdfde61cac6904561407a6f07663df4502e7b9df6c62c5a76cef2d11f7d9a87",
+      "bytes": 2459498,
+      "dimensions": [
+        640,
+        520
+      ]
+    },
+    "demo-night.gif": {
+      "sha256": "705306fa7b05660d97408a3f6119fb0258d9bc0e43f2552ccdeb98e86e3efcce",
+      "bytes": 2725031,
+      "dimensions": [
+        640,
+        520
+      ]
+    },
+    "empty-bar-failure.png": {
+      "sha256": "b9128aa65e65c0e42a443e90741a9c2b0a6f39de57754f2c0a941c8887949a71",
+      "bytes": 408767,
+      "dimensions": [
+        1200,
+        730
+      ]
+    },
+    "glare-before-after.png": {
+      "sha256": "fc30e366e255b38903735069d5b36c59f3fdba8fbd6938f38abbe27e1ba7c13e",
+      "bytes": 353145,
+      "dimensions": [
+        1200,
+        765
+      ]
+    },
+    "pipeline.png": {
+      "sha256": "2aa32eb13730e0e6e9f2230b8a309c386c8e4ba3b0fadf15519fc661a4e5deec",
+      "bytes": 300296,
+      "dimensions": [
+        1200,
+        870
+      ]
+    },
+    "results-context.png": {
+      "sha256": "f6592da81af9a8e77ab2b8f9fdcd6d1e4dc356049ef0a45230930a4df0b73429",
+      "bytes": 61304,
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    "sample-rpm-input.png": {
+      "sha256": "19eedaaf8c8071bb609d7092e8084d22508ff9bff55fe9feacb76b9962ccffb6",
+      "bytes": 35177,
+      "dimensions": [
+        256,
+        384
+      ]
+    },
+    "sample-speed-input.png": {
+      "sha256": "e87476fb1184d7c93cd7efbcd84ed7768d3037851baabf21929d48b5279af30a",
+      "bytes": 93542,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "dataset.png": {
+      "sha256": "e3a426b955ba9a4a57412273554c9112d2838b45323c1b4516085d4a826fac94",
+      "bytes": 396034,
+      "dimensions": [
+        1200,
+        952
+      ]
+    }
+  },
+  "comparison_reference": {
+    "training_run": "joint_daylight_v2_20261018T232644",
+    "video_attempt": "20261019T034941_206522_f599a312",
+    "day_output_sha256": "ca0199c518e438a145045301aa7011cb562f3e4cdac030a970c60315af9c590c",
+    "day_prediction_log_sha256": "84da2787d5709556219d9e06d9ddeba76df3dda82ee352400987f55b0c9f6249",
+    "day_report_sha256": "7971236f715430c72ed5af171866acc87c717f47255e1dc70fe02a66cd1ab4aa"
+  },
+  "current_evidence_sha256": {
+    "day_report.json": "1aec722d3ebff0aaa7b71e98137adea84ae7b47c60a35557cde069b7c1d44fdd",
+    "day_predictions.jsonl": "eb69fb6111a850e127777a1cfcb6011519e46d11fd7f42262b81073c68c901b8",
+    "night_report.json": "860a6412ab75adbe3b4450ea065214eebbedc69580e944acbffcc92cf6393017",
+    "night_predictions.jsonl": "01bfe512fc5d92eb1ff3088a956e0ba7986d03c3fb28434653e216b289c83871"
+  }
+}

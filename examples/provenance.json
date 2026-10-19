@@ -1,0 +1,38 @@
+{
+  "format_version": 1,
+  "examples": [
+    {
+      "file": "day.jpg",
+      "sha256": "a24a39be1f19fbf7ba7bc6d90c443bfea13cb66ddb3bcc8bdfb10aa3717a422c",
+      "dimensions": [
+        848,
+        478
+      ],
+      "source_video_label": "day",
+      "source_video_sha256": "076d4a01d96fb4fca3c98e425a5a3bf8a425c42441ffdc97b1edfe377ebe7d4b",
+      "source_frame_index": 11312,
+      "source_timestamp_seconds": 376.981889,
+      "cropped": false,
+      "predictions_burned_in": false,
+      "conversion": "Original decoded RGB frame re-encoded as JPEG quality95, 4:4:4; no geometry edits.",
+      "role": "Development video example, not a training source or independent accuracy test."
+    },
+    {
+      "file": "night.jpg",
+      "sha256": "31c462a02af2d9fbd6f5e73b6a6004fb9392595863dfa74fa8e1f5ec30fa9cb2",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "source_video_label": "night",
+      "source_video_sha256": "44affdd2d48fa43ddc5bf2ca0d6d25b14c0c73056af6b30ec4460940eeccae03",
+      "source_frame_index": 10086,
+      "source_timestamp_seconds": 336.337544,
+      "cropped": false,
+      "predictions_burned_in": false,
+      "conversion": "Original decoded RGB frame re-encoded as JPEG quality95, 4:4:4; no geometry edits.",
+      "role": "Development video example, not a training source or independent accuracy test."
+    }
+  ],
+  "scope": "Optional input smoke examples. No expected numeric truth is supplied."
+}

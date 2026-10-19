@@ -1,0 +1,418 @@
+{
+  "schema_version": 1,
+  "release_tag": "v0.1.0",
+  "model_family": "MobileNetV3-Small with task-specific spatial heads",
+  "benchmark_execution_scope": "The selected weights and original Colab pipeline were tested. The new public notebook wrapper has not yet completed a full Colab video run.",
+  "weights": {
+    "archive_name": "triumph-dashboard-weights-v0.1.0.zip",
+    "sha256": "2ae6c5539fa097154fd57eec984bdeaffecd92d0f67fe18e6e9747c86d585be5",
+    "size": 17717987,
+    "files": [
+      {
+        "path": "localizer/best_model.pt",
+        "sha256": "e3d6cac90715685f0e7075ac6e4e729d0fc37423c7e8df0785e3f3d4643f591e",
+        "size": 6415603
+      },
+      {
+        "path": "speed/best_model.pt",
+        "sha256": "af2bc4b1736c71cb74cd0368d654da7856a2d057b7328162380adc99a90611be",
+        "size": 6420287
+      },
+      {
+        "path": "rpm/best_model.pt",
+        "sha256": "55e585494d7feba30f5f60e4765db711b1836ed4074215ce92d2df4f13176012",
+        "size": 6409407
+      }
+    ],
+    "selected_epochs": {
+      "localizer": 5,
+      "speed": 0,
+      "rpm": 14
+    }
+  },
+  "selection_rule": "Lowest combined validation loss, including unchanged initial weights at epoch 0. Test metrics do not select checkpoints.",
+  "accuracy_status": {
+    "speed_kmh_accuracy_established": false,
+    "physical_rpm_accuracy_established": false,
+    "unseen_recording_accuracy_established": false,
+    "98_percent_accuracy_claimed": false
+  },
+  "metric_definitions": {
+    "availability": "Fraction of frames for which geometry/visibility checks permit a numeric output; a wrong output still counts as available.",
+    "landmark_error": "Euclidean error at each task model input resolution, evaluated only on visible annotated landmarks; not km/h or RPM error.",
+    "prediction_pipeline_fps": "Frames divided by preprocessing + conditional model execution + geometry time; not three models forced on every frame.",
+    "end_to_end_processing_fps": "Frames divided by probe, decode, prediction, drawing, logs, intermediate encoding, H264 encoding and output verification; excludes model setup and Drive transfer."
+  },
+  "training": {
+    "location": "Google Colab CUDA",
+    "gpu": "Tesla T4",
+    "torch_version": "2.11.0+cu130",
+    "dataset_manifest_sha256": "6033b599d62394cf40a410f28e505ae786a884d320a00003d5b055c907f7f245",
+    "split_scope": "Time-block development splits within two source recordings. Source descendants stay together. Not independent unseen-recording evaluation.",
+    "tasks": {
+      "localizer": {
+        "input_hw": [
+          512,
+          512
+        ],
+        "selected_epoch": 5,
+        "selection_origin": "trained_epoch",
+        "epochs_trained": 10,
+        "dataset_counts": {
+          "train": {
+            "exported_images": 3920,
+            "unique_source_ids": 78
+          },
+          "val": {
+            "exported_images": 32,
+            "unique_source_ids": 8
+          },
+          "test": {
+            "exported_images": 8,
+            "unique_source_ids": 8
+          }
+        },
+        "validation": {
+          "samples": 32,
+          "visible_landmark_error_input_pixels": {
+            "count": 172,
+            "mean": 2.6340936045094434,
+            "median": 2.409086046888413,
+            "p95": 5.195136828357433
+          },
+          "combined_loss": 8.26139612095934,
+          "dashboard_box_iou": {
+            "count": 32,
+            "mean": 0.9432327526889099,
+            "median": 0.9498524201122586,
+            "p95": 0.9842167193928987
+          },
+          "lcd_iou_on_nonempty_targets": {
+            "count": 32,
+            "mean": 0.9366533678201342,
+            "median": 0.9501719399088844,
+            "p95": 0.9799308800848017
+          }
+        },
+        "test": {
+          "samples": 8,
+          "visible_landmark_error_input_pixels": {
+            "count": 47,
+            "mean": 2.5188951469513565,
+            "median": 2.2570525583412278,
+            "p95": 4.488240482286381
+          },
+          "combined_loss": 7.806444270639304,
+          "dashboard_box_iou": {
+            "count": 8,
+            "mean": 0.9455532424139136,
+            "median": 0.9533815550671256,
+            "p95": 0.9644237984111401
+          },
+          "lcd_iou_on_nonempty_targets": {
+            "count": 8,
+            "mean": 0.9471332683894482,
+            "median": 0.9461390696986856,
+            "p95": 0.9754406531151126
+          }
+        }
+      },
+      "speed": {
+        "input_hw": [
+          512,
+          512
+        ],
+        "selected_epoch": 0,
+        "selection_origin": "initialization",
+        "epochs_trained": 5,
+        "dataset_counts": {
+          "train": {
+            "exported_images": 3408,
+            "unique_source_ids": 71
+          },
+          "val": {
+            "exported_images": 28,
+            "unique_source_ids": 7
+          },
+          "test": {
+            "exported_images": 7,
+            "unique_source_ids": 7
+          }
+        },
+        "validation": {
+          "samples": 28,
+          "visible_landmark_error_input_pixels": {
+            "count": 268,
+            "mean": 3.174107581366946,
+            "median": 2.463499932801559,
+            "p95": 8.153137864861582
+          },
+          "combined_loss": 3.8847328536212444
+        },
+        "test": {
+          "samples": 7,
+          "visible_landmark_error_input_pixels": {
+            "count": 68,
+            "mean": 3.5951356019282406,
+            "median": 2.7232556215781436,
+            "p95": 9.447644722980257
+          },
+          "combined_loss": 3.9905503913760185
+        }
+      },
+      "rpm": {
+        "input_hw": [
+          384,
+          256
+        ],
+        "selected_epoch": 14,
+        "selection_origin": "trained_epoch",
+        "epochs_trained": 19,
+        "dataset_counts": {
+          "train": {
+            "exported_images": 1536,
+            "unique_source_ids": 27
+          },
+          "val": {
+            "exported_images": 16,
+            "unique_source_ids": 4
+          },
+          "test": {
+            "exported_images": 5,
+            "unique_source_ids": 5
+          }
+        },
+        "validation": {
+          "samples": 16,
+          "visible_landmark_error_input_pixels": {
+            "count": 124,
+            "mean": 3.235182174689916,
+            "median": 2.6532319180458126,
+            "p95": 8.431100645210563
+          },
+          "combined_loss": 3.872013345360756
+        },
+        "test": {
+          "samples": 5,
+          "visible_landmark_error_input_pixels": {
+            "count": 38,
+            "mean": 2.7984277522312366,
+            "median": 2.3080496255806606,
+            "p95": 5.8174355198984635
+          },
+          "combined_loss": 3.775491774082184
+        }
+      }
+    }
+  },
+  "validation_change": {
+    "localizer": {
+      "metric": "visible_landmark_error_input_pixels",
+      "by_lighting": {
+        "day": {
+          "starting_weights": {
+            "count": 72,
+            "mean": 2.649822139908396,
+            "median": 2.6865636633729477,
+            "p95": 4.3700957610475
+          },
+          "selected_weights": {
+            "count": 72,
+            "mean": 2.750918888480924,
+            "median": 2.463226307885742,
+            "p95": 5.094324906189227
+          }
+        },
+        "night": {
+          "starting_weights": {
+            "count": 100,
+            "mean": 2.679224908013445,
+            "median": 2.693888065424993,
+            "p95": 5.0120972603487415
+          },
+          "selected_weights": {
+            "count": 100,
+            "mean": 2.549979400049977,
+            "median": 2.3772645029722503,
+            "p95": 5.212142384074776
+          }
+        }
+      }
+    },
+    "speed": {
+      "metric": "tip_error_input_pixels",
+      "by_lighting": {
+        "day": {
+          "starting_weights": {
+            "count": 16,
+            "mean": 6.577740715290014,
+            "median": 4.4139804485444945,
+            "p95": 16.644700294602984
+          },
+          "selected_weights": {
+            "count": 16,
+            "mean": 6.577740715290014,
+            "median": 4.4139804485444945,
+            "p95": 16.644700294602984
+          }
+        },
+        "night": {
+          "starting_weights": {
+            "count": 12,
+            "mean": 5.183408544909,
+            "median": 4.438137368725761,
+            "p95": 10.496755129822146
+          },
+          "selected_weights": {
+            "count": 12,
+            "mean": 5.183408544909,
+            "median": 4.438137368725761,
+            "p95": 10.496755129822146
+          }
+        }
+      }
+    },
+    "rpm": {
+      "metric": "bar_end_error_input_pixels",
+      "by_lighting": {
+        "day": {
+          "starting_weights": {
+            "count": 4,
+            "mean": 9.818972019397798,
+            "median": 10.106299352084644,
+            "p95": 10.516258029472075
+          },
+          "selected_weights": {
+            "count": 4,
+            "mean": 9.818972019397798,
+            "median": 10.106299352084644,
+            "p95": 10.516258029472075
+          }
+        },
+        "night": {
+          "starting_weights": {
+            "count": 8,
+            "mean": 3.5252077207912875,
+            "median": 3.186629267971756,
+            "p95": 5.49800462000161
+          },
+          "selected_weights": {
+            "count": 8,
+            "mean": 3.008719004813295,
+            "median": 2.7632718761870683,
+            "p95": 4.942748741567978
+          }
+        }
+      }
+    }
+  },
+  "current_release_cpu_video_tests": [
+    {
+      "lighting": "day",
+      "requested_duration_seconds": 120.0,
+      "frames": 3602,
+      "original_frame_height_width": [
+        478,
+        848
+      ],
+      "batch_size": 4,
+      "execution": {
+        "device": "cpu",
+        "precision": "float32",
+        "torch_num_threads": 2,
+        "location": "Google Colab",
+        "inference_only": true
+      },
+      "prediction_pipeline_fps": 4.174435746419201,
+      "end_to_end_processing_fps": 3.2989575294298588,
+      "timing_seconds": {
+        "initial_probe_seconds": 30.551994551000007,
+        "decode_seconds": 25.467792726999818,
+        "model_pipeline_seconds": 862.8711085300015,
+        "draw_seconds": 4.861112199000729,
+        "intermediate_encode_seconds": 19.09012091899234,
+        "prediction_log_seconds": 1.4673449349912744,
+        "h264_encode_seconds": 131.64537775600002,
+        "output_verification_seconds": 15.451361671000086,
+        "total_processing_seconds": 1091.8600703
+      },
+      "readings_available": {
+        "speed_available": {
+          "frames": 2735,
+          "fraction_of_all_frames": 0.7593003886729595
+        },
+        "rpm_available": {
+          "frames": 2953,
+          "fraction_of_all_frames": 0.8198223209328152
+        }
+      },
+      "actual_task_inference_frames": {
+        "localizer": 3602,
+        "speed": 3599,
+        "rpm": 3431,
+        "all_three": 3431
+      },
+      "private_report_sha256": "1aec722d3ebff0aaa7b71e98137adea84ae7b47c60a35557cde069b7c1d44fdd"
+    },
+    {
+      "lighting": "night",
+      "requested_duration_seconds": 120.0,
+      "frames": 3599,
+      "original_frame_height_width": [
+        720,
+        1280
+      ],
+      "batch_size": 4,
+      "execution": {
+        "device": "cpu",
+        "precision": "float32",
+        "torch_num_threads": 2,
+        "location": "Google Colab",
+        "inference_only": true
+      },
+      "prediction_pipeline_fps": 4.225246373478441,
+      "end_to_end_processing_fps": 2.736859118417534,
+      "timing_seconds": {
+        "initial_probe_seconds": 55.07853186599982,
+        "decode_seconds": 49.42650391899065,
+        "model_pipeline_seconds": 851.7846491959988,
+        "draw_seconds": 8.650956268988466,
+        "intermediate_encode_seconds": 38.679564288002894,
+        "prediction_log_seconds": 1.3892905239893025,
+        "h264_encode_seconds": 283.81400507000035,
+        "output_verification_seconds": 25.814119697000024,
+        "total_processing_seconds": 1315.011056207
+      },
+      "readings_available": {
+        "speed_available": {
+          "frames": 3577,
+          "fraction_of_all_frames": 0.9938871908863574
+        },
+        "rpm_available": {
+          "frames": 3535,
+          "fraction_of_all_frames": 0.982217282578494
+        }
+      },
+      "actual_task_inference_frames": {
+        "localizer": 3599,
+        "speed": 3599,
+        "rpm": 3559,
+        "all_three": 3559
+      },
+      "private_report_sha256": "860a6412ab75adbe3b4450ea065214eebbedc69580e944acbffcc92cf6393017"
+    }
+  ],
+  "current_release_gpu_video_benchmark": {
+    "status": "not_measured",
+    "note": "Earlier Tesla T4 video timings used different checkpoints; they are not reported as this release performance."
+  },
+  "known_limitations": [
+    "Daylight glare can yield false RPM estimates or unavailable readings even when LCD detection succeeds.",
+    "Motion blur and partial framing can collapse dashboard/RPM localization and misplace confidently predicted speed ticks.",
+    "A clear engine-off display with an empty RPM bar can still be rejected at the low endpoint.",
+    "Daylight RPM validation contains very few original labeled examples; validation variants do not create independent evidence.",
+    "Speed uses a training-frame reference plane, not independent physical dial calibration.",
+    "The speed fine-tune did not beat its initialization checkpoint. A selected checkpoint is not proof every metric improved."
+  ],
+  "scope_note": "Public summary of verified private artifacts. Raw videos, frame records, credentials and account identifiers are intentionally not included."
+}
