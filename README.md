@@ -1,6 +1,6 @@
 # Triumph dashboard reader
 
-Reading the analog speedometer and LCD RPM bar on a Triumph Scrambler 400 XC. Built from a synthetic dial, then improved with reviewed daylight and night video frames.
+Reading the analog speedometer and LCD RPM bar on a Triumph Scrambler 400 XC. Built from a synthetic dial, then trained with reviewed daylight and night video frames.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sainadh812/triumph-dashboard-reader/blob/v0.1.0/notebooks/Test_Your_Video.ipynb)
 [**Download selected weights**](https://github.com/sainadh812/triumph-dashboard-reader/releases/tag/v0.1.0) · [Experiment archive](https://github.com/sainadh812/triumph-speedometer-dataset)
@@ -9,7 +9,7 @@ Reading the analog speedometer and LCD RPM bar on a Triumph Scrambler 400 XC. Bu
 |---|---|
 | ![Saved daylight predictions](assets/demo-day.gif) | ![Saved night predictions](assets/demo-night.gif) |
 
-Actual saved predictions. Readings are estimates; glare and empty RPM bars still cause errors. [Inspect still frames](assets/clear-day-night.png).
+Preview clips from the saved CPU test. GPU frame comparisons are below. Readings are estimates; glare and empty RPM bars still cause errors.
 
 ## Try a video
 
@@ -42,23 +42,41 @@ Three MobileNetV3-Small models; grayscale inputs. Geometry converts landmarks in
 
 Latest dataset: **94 reviewed source frames → 8,864 training inputs** across three tasks. Daylight gets more sampling weight; night remains included. Labels follow geometry, and every source's variants stay in one split. Bulk synthesis uses scripts/OpenCV; early source cleanup used ImageGen. Full recordings and the current training dataset are not bundled. [Earlier experiments and generators](EXPERIMENTS.md).
 
-## Results, including failures
+## Prediction quality
+
+Latest selected epochs: **localizer 5 · speed 0 · RPM 14**. Both GPU tests use matching frames from the same day/night recordings. Inspect the needle, named ticks and RPM endpoint; changed numbers alone do not establish better predictions.
+
+![Earlier and selected weights on the same clear daylight frame, both GPU](assets/gpu-day-clear.png)
+
+<details>
+<summary>Night and glare: matching GPU frames</summary>
+
+![Earlier and selected weights on the same clear night frame, both GPU](assets/gpu-night-clear.png)
+
+![Both GPU runs withhold readings on this glare frame](assets/gpu-day-glare.png)
+
+</details>
+
+![Selected GPU weights still report RPM on an empty bar](assets/gpu-day-empty-bar.png)
+
+**Still failing:** the empty bar produces **259 RPM** with the selected weights. The glare example is withheld by both GPU runs. We have not established an overall speed/RPM accuracy improvement.
+
+<details>
+<summary>What validation changed</summary>
 
 ![Selected validation changes](assets/validation-changes.png)
 
-Latest selected epochs: **localizer 5 · speed 0 · RPM 14**. Night RPM endpoint error improved; daylight speed weights stayed unchanged. These are small validation groups from the same recordings, not an independent accuracy benchmark.
+Night RPM endpoint error improved; speed weights stayed unchanged. These are small validation groups from the same recordings, not an independent accuracy benchmark.
 
-![Glare before and after fine-tuning](assets/glare-before-after.png)
+</details>
 
-Daylight RPM availability rose **51.1% → 82.0%** on matched frames. That means more displayed readings, not 82% accuracy: glare can still produce confident wrong landmarks.
-
-![False RPM on a clearly empty bar](assets/empty-bar-failure.png)
-
-The latest CPU test processed all **7,201 frames** from two two-minute windows: **3.30 FPS day / 2.74 FPS night**, including rendering/encoding. Earlier GPU timings used a different pipeline execution mix; they are reported separately. **30–60 FPS and 98% real-world accuracy remain unmet goals.** [Metrics and provenance](results/summary.json).
+The latest GPU test processed **7,201 frames** across two two-minute windows. Availability means a reading was displayed, not that it was correct. [Metrics](results/summary.json) · [GPU frame provenance](assets/gpu-qualitative-provenance.json).
 
 <details>
-<summary>Timing context: CPU versus earlier GPU runs</summary>
+<summary>Hardware timings</summary>
 
-![Execution context for the reported timings](assets/results-context.png)
+![Independent CPU and GPU measurements](assets/timing-context.png)
+
+Hardware timings describe execution cost. They do not show a training improvement. Compare FPS before/after only with the same hardware, clips, precision, batch size and processing steps.
 
 </details>

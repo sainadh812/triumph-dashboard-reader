@@ -2,7 +2,7 @@
   "schema_version": 1,
   "release_tag": "v0.1.0",
   "model_family": "MobileNetV3-Small with task-specific spatial heads",
-  "benchmark_execution_scope": "The selected weights and original Colab pipeline were tested. The new public notebook wrapper has not yet completed a full Colab video run.",
+  "benchmark_execution_scope": "Selected weights tested on Colab GPU and CPU using the original pipeline. The public upload-notebook wrapper has not yet completed its own full Colab video run.",
   "weights": {
     "archive_name": "triumph-dashboard-weights-v0.1.0.zip",
     "sha256": "2ae6c5539fa097154fd57eec984bdeaffecd92d0f67fe18e6e9747c86d585be5",
@@ -403,8 +403,11 @@
     }
   ],
   "current_release_gpu_video_benchmark": {
-    "status": "not_measured",
-    "note": "Earlier Tesla T4 video timings used different checkpoints; they are not reported as this release performance."
+    "status": "complete",
+    "accelerator": "T4",
+    "accelerator_evidence": "Colab runtime UI observed during this run; execution logs independently record CUDA.",
+    "inference_code_commit": "7a3fd991d6c0e85e050e593c76fd895d59d516ed",
+    "note": "Same selected checkpoints and video windows as the CPU test. Separate execution measurements, not before/after training improvement. Numerical output availability is not accuracy."
   },
   "known_limitations": [
     "Daylight glare can yield false RPM estimates or unavailable readings even when LCD detection succeeds.",
@@ -414,5 +417,101 @@
     "Speed uses a training-frame reference plane, not independent physical dial calibration.",
     "The speed fine-tune did not beat its initialization checkpoint. A selected checkpoint is not proof every metric improved."
   ],
-  "scope_note": "Public summary of verified private artifacts. Raw videos, frame records, credentials and account identifiers are intentionally not included."
+  "scope_note": "Public summary of verified private artifacts. Raw videos, frame records, credentials and account identifiers are intentionally not included.",
+  "current_release_gpu_video_tests": [
+    {
+      "lighting": "day",
+      "requested_duration_seconds": 120.0,
+      "frames": 3602,
+      "original_frame_height_width": [
+        478,
+        848
+      ],
+      "batch_size": 16,
+      "execution": {
+        "device": "cuda",
+        "precision": "autocast_float16",
+        "torch_num_threads": 1,
+        "location": "Google Colab",
+        "inference_only": true
+      },
+      "prediction_pipeline_fps": 52.903021415920705,
+      "end_to_end_processing_fps": 15.340476123441585,
+      "timing_seconds": {
+        "initial_probe_seconds": 23.331489810999983,
+        "decode_seconds": 19.532019225000766,
+        "model_pipeline_seconds": 68.08684841799999,
+        "draw_seconds": 9.23647619999889,
+        "intermediate_encode_seconds": 12.42838628600009,
+        "prediction_log_seconds": 0.8175384930026439,
+        "h264_encode_seconds": 91.78979269399997,
+        "output_verification_seconds": 9.360827940999968,
+        "total_processing_seconds": 234.80366391599998
+      },
+      "readings_available": {
+        "speed_available": {
+          "frames": 2751,
+          "fraction_of_all_frames": 0.7637423653525819
+        },
+        "rpm_available": {
+          "frames": 2979,
+          "fraction_of_all_frames": 0.8270405330372016
+        }
+      },
+      "actual_task_inference_frames": {
+        "localizer": 3602,
+        "speed": 3599,
+        "rpm": 3425,
+        "all_three": 3425
+      },
+      "private_report_sha256": "35c171d0272acfe9e8733bcb21481d8abaf5763f900c40233184ca5e7872f4c0"
+    },
+    {
+      "lighting": "night",
+      "requested_duration_seconds": 120.0,
+      "frames": 3599,
+      "original_frame_height_width": [
+        720,
+        1280
+      ],
+      "batch_size": 16,
+      "execution": {
+        "device": "cuda",
+        "precision": "autocast_float16",
+        "torch_num_threads": 1,
+        "location": "Google Colab",
+        "inference_only": true
+      },
+      "prediction_pipeline_fps": 53.186642576280505,
+      "end_to_end_processing_fps": 8.841609244304683,
+      "timing_seconds": {
+        "initial_probe_seconds": 43.287562912,
+        "decode_seconds": 37.655227048000256,
+        "model_pipeline_seconds": 67.667365821001,
+        "draw_seconds": 16.969285098004548,
+        "intermediate_encode_seconds": 25.427269849997856,
+        "prediction_log_seconds": 0.7907885620004436,
+        "h264_encode_seconds": 196.948026272,
+        "output_verification_seconds": 18.155760822000047,
+        "total_processing_seconds": 407.052596485
+      },
+      "readings_available": {
+        "speed_available": {
+          "frames": 3571,
+          "fraction_of_all_frames": 0.9922200611280911
+        },
+        "rpm_available": {
+          "frames": 3534,
+          "fraction_of_all_frames": 0.981939427618783
+        }
+      },
+      "actual_task_inference_frames": {
+        "localizer": 3599,
+        "speed": 3599,
+        "rpm": 3558,
+        "all_three": 3558
+      },
+      "private_report_sha256": "94844e94022cbc8818ab7d7505ad768b39fb1b7b0aea066015916efa92f85181"
+    }
+  ]
 }

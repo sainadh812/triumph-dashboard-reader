@@ -1,0 +1,228 @@
+{
+  "purpose": "Same-frame qualitative review of saved GPU predictions; not an accuracy or throughput comparison.",
+  "earlier_model_sha256": {
+    "localizer": "9bbb11cddad50263dd0620a98f3f0b87dab5dafd67b1e44b872bd338d159b7e2",
+    "speed": "1477af2e62cf8981366d1be46a83c86e32882deca7bc21c9de20df4ad688fb76",
+    "rpm": "34b636a8bf91fff878575a27a30ab8c44ecfdc30783ce2b0efe446dfeb66c85b"
+  },
+  "selected_model_sha256": {
+    "localizer": "e3d6cac90715685f0e7075ac6e4e729d0fc37423c7e8df0785e3f3d4643f591e",
+    "speed": "af2bc4b1736c71cb74cd0368d654da7856a2d057b7328162380adc99a90611be",
+    "rpm": "55e585494d7feba30f5f60e4765db711b1836ed4074215ce92d2df4f13176012"
+  },
+  "earlier_inference_code_commit": "a0a4d30c46fe8a5200487099d2515b3de2acd9a1",
+  "selected_inference_code_commit": "7a3fd991d6c0e85e050e593c76fd895d59d516ed",
+  "neural_execution": false,
+  "files": {
+    "day": {
+      "source_sha256": "076d4a01d96fb4fca3c98e425a5a3bf8a425c42441ffdc97b1edfe377ebe7d4b",
+      "earlier_execution": {
+        "location": "Google Colab CUDA",
+        "device": "cuda (run location evidence)",
+        "precision": "float16 autocast (audited source code)",
+        "batch_size": 16
+      },
+      "selected_execution": {
+        "location": "Google Colab CUDA",
+        "device": "cuda",
+        "precision": "autocast_float16",
+        "batch_size": 16
+      },
+      "earlier_files_sha256": {
+        "report.json": "7971236f715430c72ed5af171866acc87c717f47255e1dc70fe02a66cd1ab4aa",
+        "predictions.jsonl": "84da2787d5709556219d9e06d9ddeba76df3dda82ee352400987f55b0c9f6249",
+        "labeled.mp4": "ca0199c518e438a145045301aa7011cb562f3e4cdac030a970c60315af9c590c"
+      },
+      "selected_files_sha256": {
+        "report.json": "35c171d0272acfe9e8733bcb21481d8abaf5763f900c40233184ca5e7872f4c0",
+        "predictions.jsonl": "58489f3f5d136571a20ac3750bfb7b3eb20da94fbaa1aaf4e8e4a19300d140de",
+        "labeled.mp4": "4c8826def8cc1eebb692e3d4a0736e9fd08b2bbe723df9de3d87515ea59b82ad"
+      }
+    },
+    "night": {
+      "source_sha256": "44affdd2d48fa43ddc5bf2ca0d6d25b14c0c73056af6b30ec4460940eeccae03",
+      "earlier_execution": {
+        "location": "Google Colab CUDA",
+        "device": "cuda (run location evidence)",
+        "precision": "float16 autocast (audited source code)",
+        "batch_size": 16
+      },
+      "selected_execution": {
+        "location": "Google Colab CUDA",
+        "device": "cuda",
+        "precision": "autocast_float16",
+        "batch_size": 16
+      },
+      "earlier_files_sha256": {
+        "report.json": "aad052f1e2134dd6780740e3449d80ed01b3b130141d8dc265629135383f39f1",
+        "predictions.jsonl": "6e13298194f707f0d30f55807be39e1d25f06498f2e544ee0b6f30308674c22e",
+        "labeled.mp4": "599988213138ecb0e65221ddcd28db80da89d3006ad7c5b865ce510dc315fd3f"
+      },
+      "selected_files_sha256": {
+        "report.json": "94844e94022cbc8818ab7d7505ad768b39fb1b7b0aea066015916efa92f85181",
+        "predictions.jsonl": "c704fdff4d65810101fc7d546fbcbdc99a301566d4214013f94e8b2de85167c4",
+        "labeled.mp4": "81a4db395b732066913285829220ba085e8565defcb5b353af9a2755e1fa0862"
+      }
+    }
+  },
+  "cases": [
+    {
+      "asset": "gpu-day-clear.png",
+      "source_frame": 11312,
+      "source_time_seconds": 376.981889,
+      "common_dashboard_crop_xyxy": [
+        316,
+        0,
+        784,
+        355
+      ],
+      "common_lcd_crop_xyxy": [
+        519,
+        111,
+        743,
+        253
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels.",
+      "earlier": {
+        "speed_kmh": 10.672456531533278,
+        "rpm": 1344.8275862068967,
+        "speed_status": "available",
+        "rpm_status": "available",
+        "clip_frame_index": 1396
+      },
+      "selected": {
+        "speed_kmh": 11.96735207056061,
+        "rpm": 1241.379310344828,
+        "speed_status": "available",
+        "rpm_status": "available",
+        "clip_frame_index": 1396
+      },
+      "sha256": "8d022c9097aa7097b3ba34dc522966e9d10ccb82a22256953a023b5138f7efda",
+      "bytes": 572893,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    },
+    {
+      "asset": "gpu-day-glare.png",
+      "source_frame": 11763,
+      "source_time_seconds": 392.0052,
+      "common_dashboard_crop_xyxy": [
+        397,
+        27,
+        848,
+        389
+      ],
+      "common_lcd_crop_xyxy": [
+        597,
+        149,
+        848,
+        327
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels.",
+      "earlier": {
+        "speed_kmh": null,
+        "rpm": null,
+        "speed_status": "fewer_than_four_visible_speed_ticks",
+        "rpm_status": "rpm_roi_corner_not_visible",
+        "clip_frame_index": 1847
+      },
+      "selected": {
+        "speed_kmh": null,
+        "rpm": null,
+        "speed_status": "fewer_than_four_visible_speed_ticks",
+        "rpm_status": "rpm_roi_corner_not_visible",
+        "clip_frame_index": 1847
+      },
+      "sha256": "fb564e9d1e3ac8be601f420a874f763a0ae008efbd8f9dc95b480707c7cc1cab",
+      "bytes": 392334,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    },
+    {
+      "asset": "gpu-day-empty-bar.png",
+      "source_frame": 13396,
+      "source_time_seconds": 446.402544,
+      "common_dashboard_crop_xyxy": [
+        371,
+        83,
+        848,
+        443
+      ],
+      "common_lcd_crop_xyxy": [
+        569,
+        201,
+        809,
+        355
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels.",
+      "earlier": {
+        "speed_kmh": null,
+        "rpm": null,
+        "speed_status": "needle_outside_calibrated_speed_arc",
+        "rpm_status": "rpm_endpoint_outside_visible_anchor_interval",
+        "clip_frame_index": 3480
+      },
+      "selected": {
+        "speed_kmh": 2.9065641302207545,
+        "rpm": 258.82352941176475,
+        "speed_status": "available",
+        "rpm_status": "available",
+        "clip_frame_index": 3480
+      },
+      "sha256": "46eea1a222f64967e9726401e37319326c228ac0902e9c5c03346f3c58496861",
+      "bytes": 565805,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    },
+    {
+      "asset": "gpu-night-clear.png",
+      "source_frame": 10086,
+      "source_time_seconds": 336.337544,
+      "common_dashboard_crop_xyxy": [
+        93,
+        0,
+        1052,
+        720
+      ],
+      "common_lcd_crop_xyxy": [
+        478,
+        266,
+        1010,
+        720
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels.",
+      "earlier": {
+        "speed_kmh": 35.35042126132872,
+        "rpm": 1986.2068965517242,
+        "speed_status": "available",
+        "rpm_status": "available",
+        "clip_frame_index": 1050
+      },
+      "selected": {
+        "speed_kmh": 34.73243384654622,
+        "rpm": 1983.6065573770488,
+        "speed_status": "available",
+        "rpm_status": "available",
+        "clip_frame_index": 1050
+      },
+      "sha256": "87e07a87fac6c6909ccbfdd17c34a61c224b08f0294c73c188819f6f0afddd05",
+      "bytes": 638469,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    }
+  ],
+  "limitations": [
+    "Purpose-selected frames from the development recordings are not an independent accuracy sample.",
+    "Values are copied from saved logs and are not ground-truth measurements.",
+    "Different weights and separate runtime sessions; do not attribute every change solely to training.",
+    "No image correction or generated landmark predictions are used in these panels."
+  ]
+}

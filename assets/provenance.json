@@ -25,16 +25,6 @@
       "day_source_frame": 11312,
       "night_source_frame": 10086
     },
-    "glare-before-after.png": {
-      "day_source_frame": 11763,
-      "time_seconds": 392.0052,
-      "old_execution": "Colab GPU mixed precision",
-      "new_execution": "Colab CPU float32"
-    },
-    "empty-bar-failure.png": {
-      "day_source_frame": 13396,
-      "time_seconds": 446.402544
-    },
     "augmentation-guard.png": {
       "training_rows": [
         "day_00_speed_003",
@@ -151,6 +141,74 @@
         }
       ],
       "presentation_crop": "Original and annotation panels cropped to dashboard annotation bounds plus12px; exported model-input panels retain complete input."
+    },
+    "gpu-day-clear.png": {
+      "source_frame": 11312,
+      "source_time_seconds": 376.981889,
+      "common_dashboard_crop_xyxy": [
+        316,
+        0,
+        784,
+        355
+      ],
+      "common_lcd_crop_xyxy": [
+        519,
+        111,
+        743,
+        253
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels."
+    },
+    "gpu-day-glare.png": {
+      "source_frame": 11763,
+      "source_time_seconds": 392.0052,
+      "common_dashboard_crop_xyxy": [
+        397,
+        27,
+        848,
+        389
+      ],
+      "common_lcd_crop_xyxy": [
+        597,
+        149,
+        848,
+        327
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels."
+    },
+    "gpu-day-empty-bar.png": {
+      "source_frame": 13396,
+      "source_time_seconds": 446.402544,
+      "common_dashboard_crop_xyxy": [
+        371,
+        83,
+        848,
+        443
+      ],
+      "common_lcd_crop_xyxy": [
+        569,
+        201,
+        809,
+        355
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels."
+    },
+    "gpu-night-clear.png": {
+      "source_frame": 10086,
+      "source_time_seconds": 336.337544,
+      "common_dashboard_crop_xyxy": [
+        93,
+        0,
+        1052,
+        720
+      ],
+      "common_lcd_crop_xyxy": [
+        478,
+        266,
+        1010,
+        720
+      ],
+      "crop_method": "Union of both saved dashboard/LCD geometries with fixed margins; exactly the same pixel rectangle in both panels."
     }
   },
   "demos": [
@@ -435,36 +493,12 @@
         520
       ]
     },
-    "empty-bar-failure.png": {
-      "sha256": "b9128aa65e65c0e42a443e90741a9c2b0a6f39de57754f2c0a941c8887949a71",
-      "bytes": 408767,
-      "dimensions": [
-        1200,
-        730
-      ]
-    },
-    "glare-before-after.png": {
-      "sha256": "fc30e366e255b38903735069d5b36c59f3fdba8fbd6938f38abbe27e1ba7c13e",
-      "bytes": 353145,
-      "dimensions": [
-        1200,
-        765
-      ]
-    },
     "pipeline.png": {
       "sha256": "2aa32eb13730e0e6e9f2230b8a309c386c8e4ba3b0fadf15519fc661a4e5deec",
       "bytes": 300296,
       "dimensions": [
         1200,
         870
-      ]
-    },
-    "results-context.png": {
-      "sha256": "f6592da81af9a8e77ab2b8f9fdcd6d1e4dc356049ef0a45230930a4df0b73429",
-      "bytes": 61304,
-      "dimensions": [
-        1200,
-        800
       ]
     },
     "sample-rpm-input.png": {
@@ -490,19 +524,87 @@
         1200,
         952
       ]
+    },
+    "timing-context.png": {
+      "sha256": "2a8fc3a82412bb2a7e90b3756608cd7e708a577bad2d17aaf243c70ab1914f2e",
+      "bytes": 61418,
+      "dimensions": [
+        1200,
+        716
+      ]
+    },
+    "gpu-day-clear.png": {
+      "sha256": "8d022c9097aa7097b3ba34dc522966e9d10ccb82a22256953a023b5138f7efda",
+      "bytes": 572893,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    },
+    "gpu-day-glare.png": {
+      "sha256": "fb564e9d1e3ac8be601f420a874f763a0ae008efbd8f9dc95b480707c7cc1cab",
+      "bytes": 392334,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    },
+    "gpu-day-empty-bar.png": {
+      "sha256": "46eea1a222f64967e9726401e37319326c228ac0902e9c5c03346f3c58496861",
+      "bytes": 565805,
+      "dimensions": [
+        1200,
+        1016
+      ]
+    },
+    "gpu-night-clear.png": {
+      "sha256": "87e07a87fac6c6909ccbfdd17c34a61c224b08f0294c73c188819f6f0afddd05",
+      "bytes": 638469,
+      "dimensions": [
+        1200,
+        1016
+      ]
     }
-  },
-  "comparison_reference": {
-    "training_run": "joint_daylight_v2_20261018T232644",
-    "video_attempt": "20261019T034941_206522_f599a312",
-    "day_output_sha256": "ca0199c518e438a145045301aa7011cb562f3e4cdac030a970c60315af9c590c",
-    "day_prediction_log_sha256": "84da2787d5709556219d9e06d9ddeba76df3dda82ee352400987f55b0c9f6249",
-    "day_report_sha256": "7971236f715430c72ed5af171866acc87c717f47255e1dc70fe02a66cd1ab4aa"
   },
   "current_evidence_sha256": {
     "day_report.json": "1aec722d3ebff0aaa7b71e98137adea84ae7b47c60a35557cde069b7c1d44fdd",
     "day_predictions.jsonl": "eb69fb6111a850e127777a1cfcb6011519e46d11fd7f42262b81073c68c901b8",
     "night_report.json": "860a6412ab75adbe3b4450ea065214eebbedc69580e944acbffcc92cf6393017",
     "night_predictions.jsonl": "01bfe512fc5d92eb1ff3088a956e0ba7986d03c3fb28434653e216b289c83871"
+  },
+  "historical_comparison_reference": {
+    "training_run": "joint_daylight_v2_20261018T232644",
+    "video_attempt": "20261019T034941_206522_f599a312",
+    "day_output_sha256": "ca0199c518e438a145045301aa7011cb562f3e4cdac030a970c60315af9c590c",
+    "day_prediction_log_sha256": "84da2787d5709556219d9e06d9ddeba76df3dda82ee352400987f55b0c9f6249",
+    "day_report_sha256": "7971236f715430c72ed5af171866acc87c717f47255e1dc70fe02a66cd1ab4aa"
+  },
+  "presentation_revision": {
+    "reason": "Remove GPU-before/CPU-after framing; focus on prediction evidence.",
+    "retired_assets": [
+      "glare-before-after.png",
+      "results-context.png",
+      "glare-failure.png",
+      "empty-bar-failure.png"
+    ],
+    "historical_reference_note": "Earlier run hashes are retained for audit only; they are not a displayed training or hardware comparison.",
+    "current_main_story": "Matched-source qualitative GPU comparisons; no CPU versus GPU training interpretation or measured accuracy claim."
+  },
+  "gpu_qualitative_review": {
+    "provenance_file": "gpu-qualitative-provenance.json",
+    "earlier_gpu_attempt": "20261019T034941_206522_f599a312",
+    "selected_gpu_attempt": "20261019T145010_641296_0d5a6427",
+    "earlier_model_sha256": {
+      "localizer": "9bbb11cddad50263dd0620a98f3f0b87dab5dafd67b1e44b872bd338d159b7e2",
+      "speed": "1477af2e62cf8981366d1be46a83c86e32882deca7bc21c9de20df4ad688fb76",
+      "rpm": "34b636a8bf91fff878575a27a30ab8c44ecfdc30783ce2b0efe446dfeb66c85b"
+    },
+    "selected_model_sha256": {
+      "localizer": "e3d6cac90715685f0e7075ac6e4e729d0fc37423c7e8df0785e3f3d4643f591e",
+      "speed": "af2bc4b1736c71cb74cd0368d654da7856a2d057b7328162380adc99a90611be",
+      "rpm": "55e585494d7feba30f5f60e4765db711b1836ed4074215ce92d2df4f13176012"
+    },
+    "purpose": "Same-frame qualitative review of saved GPU predictions; not an accuracy or throughput comparison.",
+    "note": "Earlier CPU previews remain identified by the top-level video_execution field; GPU paired figures have their own exact provenance."
   }
 }

@@ -4,7 +4,14 @@ Three inference checkpoints for dashboard/LCD localization, analog speed and LCD
 
 This is a prototype. Numeric-reading availability is **not accuracy**. No 98% accuracy, physical speed/RPM accuracy or unseen-recording performance is established. Validation changes are mixed: daylight localization worsened slightly, daylight RPM endpoint error stayed unchanged, and night RPM endpoint error improved. Motion blur, glare, partial framing and the empty RPM bar at engine-off remain failure cases.
 
-The selected weights and original pipeline were tested on two 120-second clips in Colab CPU mode, float32, two threads and batch 4. The new public notebook wrapper has not yet completed a full Colab video run. Prediction-pipeline throughput was 4.17 FPS day and 4.23 FPS night; full processing throughput was 3.30 and 2.74 FPS respectively. Work is conditional: a reader may be skipped when its region is invalid. GPU training does not establish GPU inference throughput for these selected weights.
+The selected weights and original pipeline were tested on the same two 120-second clips in Colab GPU and CPU modes. These are separate hardware measurements, not a before/after training comparison. The public notebook wrapper has not yet completed its own full Colab video run.
+
+| Execution | Prediction FPS, day / night | Full-output FPS, day / night |
+|---|---:|---:|
+| T4 GPU, float16 autocast, batch 16 | 52.90 / 53.19 | 15.34 / 8.84 |
+| CPU, float32, batch 4, two threads | 4.17 / 4.23 | 3.30 / 2.74 |
+
+Full-output timing includes decoding, overlays and encoding; it excludes model setup and Drive transfer. A reader may be skipped when its region is unusable. Different precision and batch settings can change predictions near decision thresholds; the hardware runs are not an accuracy comparison. The clear empty-bar example still produces a false RPM reading.
 
 ## Download integrity
 
@@ -20,4 +27,4 @@ The archive contains only `weights_manifest.json` and the three original inferen
 | `speed/best_model.pt` | 6,420,287 | `af2bc4b1736c71cb74cd0368d654da7856a2d057b7328162380adc99a90611be` |
 | `rpm/best_model.pt` | 6,409,407 | `55e585494d7feba30f5f60e4765db711b1836ed4074215ce92d2df4f13176012` |
 
-The architecture and point order are recorded in `weights_manifest.json`; the model's dense state keys are unchanged. See [summary.json](https://github.com/sainadh812/triumph-dashboard-reader/blob/main/results/summary.json) for metric definitions, validation sample counts and CPU timing details.
+The architecture and point order are recorded in `weights_manifest.json`; the model's dense state keys are unchanged. See [summary.json](https://github.com/sainadh812/triumph-dashboard-reader/blob/main/results/summary.json) for metric definitions, validation sample counts and hardware timing details.
