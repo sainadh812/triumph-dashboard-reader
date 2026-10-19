@@ -1,0 +1,113 @@
+{
+  "purpose": "Historical speed-only demonstrations with unchanged predictions. Not latest released model or an independent accuracy benchmark.",
+  "playback": "Original playback timing; playback FPS is not inference throughput.",
+  "clips": [
+    {
+      "file": "startup-needle-sweep-v3.mp4",
+      "bytes": 4819891,
+      "sha256": "c6db3ed6e59ebde204ce54c5c568e116f51a1b0f215e287973030074dfc3a063",
+      "description": "Historical V3 epoch 8 ignition needle sweep. This is indicated speed during an instrument self-test, not vehicle motion.",
+      "source_output_file": "Triumph_V3_epoch8_181323_30fps_predictions.mp4",
+      "source_output_sha256": "57dbda9aaaaa71575234569d95a90a372be0f0d5ea106630d6f57fe4792665ee",
+      "source_video_sha256": "6125503654f3d2a06ac67765bfc4f5af670f027335a501d50e2a88412b8ffaf9",
+      "checkpoint_sha256": "8dcfa269848bac5a46c8ff39d14df4d3470e67905085fb0a662ee45b9bc99d10",
+      "checkpoint_epoch": 8,
+      "source_frame_start_inclusive": 0,
+      "source_frame_stop_exclusive": 541,
+      "source_output_offset_seconds": 0,
+      "frame_count": 541,
+      "duration_seconds": 18.033333333333335,
+      "playback_fps": 30.0,
+      "playback_note": "Playback FPS is not inference throughput. Timing is unchanged from the saved historical labeled output.",
+      "size_width_height": [
+        1024,
+        696
+      ],
+      "codec": "H.264 / libx264",
+      "pixel_format": "yuv420p",
+      "crf": 21,
+      "faststart": true,
+      "audio": false,
+      "original_labeled_frame_preserved": true,
+      "predictions_changed": false,
+      "model_executed_for_export": false,
+      "overlay_meaning": "Cyan is predicted needle. Amber ticks are aligned reference ticks, not neural tick detections.",
+      "poster_source_frame": 182,
+      "endpoint_policy": "Existing 2 km/h endpoint tolerance can clamp the indicated result to 0 or 180. Poster frame raw indicated value is 180.125 and displayed value is 180.0.",
+      "accepted_frames_in_original_output": 441,
+      "rejected_frames_in_original_output": 100,
+      "limitation": "This recording supplied development/training examples. Historical demonstration, not an independent accuracy test and not the latest three-model pipeline.",
+      "reviewed_frames": [
+        0,
+        120,
+        150,
+        182,
+        210,
+        240,
+        540
+      ],
+      "github_video_url": "https://github.com/user-attachments/assets/69754f0d-e5bc-48b1-8273-85c016cad984",
+      "original_inference_device": "cpu"
+    },
+    {
+      "title": "Left camera view \u2014 earlier V4 speed detector",
+      "caption": "Earlier V4 epoch 17: needle and speed-scale tracking around 60 km/h. Same development recording; qualitative example, not an independent accuracy test. 30 FPS is playback, not inference throughput.",
+      "published_clip": "left-view-speed-v4.mp4",
+      "bytes": 2126229,
+      "sha256": "e994e1cb6ab534e96c1da5efa3c94b2c257af9513a2c44ba43489fde4eef6e60",
+      "duration_seconds": 12.0,
+      "frame_count": 360,
+      "playback_fps": 30.0,
+      "size": [
+        1024,
+        720
+      ],
+      "source_labeled_video_basename": "Triumph_V4_epoch17_174359_MASKED_30fps_predictions.mp4",
+      "source_labeled_video_sha256": "4d56e2d6e25350face659d4ed25170344ddf8f54ea56ec9761aa52ee087cbade",
+      "original_recording_sha256": "f6aa7bcd1b4dc2f5e93ad6a91cf2e865f2f05391485710cb716d568116dc6828",
+      "source_output_frame_range_inclusive": [
+        120,
+        479
+      ],
+      "source_output_seconds_start_inclusive": 4,
+      "source_output_seconds_end_exclusive": 16,
+      "original_recording_frame_range_inclusive": [
+        120,
+        479
+      ],
+      "model_family": "real_adaptation_v4 needle and semantic speed-tick detector",
+      "checkpoint_best_epoch": 17,
+      "checkpoint_sha256": "ed7f27c44e89f4caebefddc79fb1481786efc2e6fc3ddd103f7bcb3b2625857d",
+      "original_inference_device": "cpu",
+      "original_inference_batch_size": 8,
+      "inference_processing_seconds_full_recording": 232.57441220013425,
+      "inference_full_recording_output_fps": 2.5884188819618243,
+      "speed_range_kmh": [
+        49.03826812953916,
+        77.94002644181342
+      ],
+      "accepted_prediction_count": 360,
+      "accuracy_ground_truth_available": false,
+      "poster_clip_frame_index": 69,
+      "poster_source_output_frame_index": 189,
+      "poster_speed_kmh": 60.02926353562938,
+      "transcode": {
+        "codec": "H.264",
+        "pixel_format": "yuv420p",
+        "crf": 21,
+        "faststart": true,
+        "audio": false,
+        "resize": false,
+        "crop": false,
+        "speed_change": false
+      },
+      "checks": {
+        "full_clip_decodes": true,
+        "expected_frames": 360,
+        "no_new_inference_or_training": true
+      },
+      "limitation": "Older model on its development video. Neither current released-checkpoint performance nor an independent accuracy result. Original overlay is retained unchanged.",
+      "github_video_url": "https://github.com/user-attachments/assets/56c0f28d-c2bb-467c-b0f4-466a1ae7727e"
+    }
+  ]
+}

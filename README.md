@@ -5,11 +5,34 @@ Reading the analog speedometer and LCD RPM bar on a Triumph Scrambler 400 XC. Bu
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sainadh812/triumph-dashboard-reader/blob/v0.1.0/notebooks/Test_Your_Video.ipynb)
 [**Download selected weights**](https://github.com/sainadh812/triumph-dashboard-reader/releases/tag/v0.1.0) · [Experiment archive](https://github.com/sainadh812/triumph-speedometer-dataset)
 
+## Watch the detections
+
+Two earlier speed experiments, with the original input and prediction overlays. Press **Play** on either video.
+
+### Startup sweep · 0 → 180 → 0
+
+https://github.com/user-attachments/assets/69754f0d-e5bc-48b1-8273-85c016cad984
+
+**18 seconds · V3, epoch 8.** Ignition self-test, not road speed. Cyan: predicted needle. Amber: aligned reference ticks.
+
+### Left camera view · around 60 km/h
+
+https://github.com/user-attachments/assets/56c0f28d-c2bb-467c-b0f4-466a1ae7727e
+
+**12 seconds · V4, epoch 17.** Predicted needle and named ticks follow the angled dial. Original frame on the left; masked model input on the right.
+
+These recordings were used during development. They show earlier behavior, not an independent accuracy test of the current weights. [Clip provenance](assets/historical-video-provenance.json).
+
+<details>
+<summary>More previews: recent daylight and night</summary>
+
 | Daylight | Night |
 |---|---|
 | ![Saved daylight predictions](assets/demo-day.gif) | ![Saved night predictions](assets/demo-night.gif) |
 
 Preview clips from the saved CPU test. GPU frame comparisons are below. Readings are estimates; glare and empty RPM bars still cause errors.
+
+</details>
 
 ## Try a video
 
