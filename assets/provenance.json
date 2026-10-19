@@ -1,5 +1,15 @@
 {
   "format_version": 1,
+  "early_annotation_design": {
+    "asset": "arc-needle-annotation.png",
+    "sha256": "26f78be292e5843fb3ae8b5a67a922e22528dbf1a4740beeb6b40c1947c4f5f6",
+    "source_sha256": "c1d0e8a1e204626518853005f5c58bc91113d3bdf8a82477c75787eee26b0f7b",
+    "source_kind": "ImageGen-reconstructed grayscale master",
+    "overlay_method": "Programmatic reference annotations: scale arc, six tick anchors, needle pivot/tip and occlusion region",
+    "anchor_speeds_kmh": [0, 40, 80, 120, 160, 180],
+    "model_output": false,
+    "note": "Original review image copied unchanged. Coordinates belong to the reconstructed master, not the original photograph. Source needle speed was not verified."
+  },
   "purpose": "Presentation assets derived from recorded development footage, saved model predictions and reviewed dataset QA. No neural execution or generated predictions were used to create these assets.",
   "training_run": "joint_daylight_v3_20261019T060549",
   "training_attempt": "20261019T061736_225434",

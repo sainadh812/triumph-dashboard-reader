@@ -50,6 +50,12 @@ Open Colab → select GPU (or CPU) → run setup → upload your video → downl
 
 Three MobileNetV3-Small models; grayscale inputs. Geometry converts landmarks into readings. A reader runs only when its region is usable. Unavailable readings keep their rejection reason in the report. Gear and odometer are not implemented.
 
+### Arc and needle annotations
+
+![Early dial annotation design: cyan scale arc, yellow tick anchors and pink needle pivot and tip](assets/arc-needle-annotation.png)
+
+ImageGen-reconstructed source with annotations added in code. **Cyan:** scale arc · **yellow:** six visible tick anchors · **pink:** needle pivot and tip. Orange marks the needle-occluded region. This is the early labeling design, not model predictions.
+
 ## What changed along the way
 
 | Problem | Decision | What we learned |
