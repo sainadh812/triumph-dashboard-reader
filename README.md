@@ -95,8 +95,19 @@ Night RPM endpoint error improved; speed weights stayed unchanged. These are sma
 
 The latest GPU test processed **7,201 frames** across two two-minute windows. Availability means a reading was displayed, not that it was correct. [Metrics](results/summary.json) · [GPU frame provenance](assets/gpu-qualitative-provenance.json).
 
+## GPU measurements
+
+**Colab T4 · batch 16 · float16 autocast · 19 October 2026.** Selected dashboard/LCD, speed and RPM pipeline; each clip covers the last two minutes of its recording.
+
+| Clip | Frames | Prediction FPS | Full-output FPS | Total processing time |
+|---|---:|---:|---:|---:|
+| Daylight · 848 × 478 | 3,602 | **52.90** | **15.34** | 234.80 s |
+| Night · 1280 × 720 | 3,599 | **53.19** | **8.84** | 407.05 s |
+
+Prediction includes input preparation, conditional model calls and geometry. Full output also includes video decoding, overlays, logging, encoding and verification; model setup and Drive transfers are excluded. These are throughput measurements, not accuracy or training-improvement claims. [Exact timings and definitions](results/summary.json).
+
 <details>
-<summary>Hardware timings</summary>
+<summary>Separate CPU and GPU measurements</summary>
 
 ![Independent CPU and GPU measurements](assets/timing-context.png)
 

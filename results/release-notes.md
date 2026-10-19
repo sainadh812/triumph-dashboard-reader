@@ -11,6 +11,8 @@ The selected weights and original pipeline were tested on the same two 120-secon
 | T4 GPU, float16 autocast, batch 16 | 52.90 / 53.19 | 15.34 / 8.84 |
 | CPU, float32, batch 4, two threads | 4.17 / 4.23 | 3.30 / 2.74 |
 
+GPU run on **19 October 2026**: daylight **3,602 frames in 234.80 seconds**; night **3,599 frames in 407.05 seconds**. Each clip is the last two minutes of its recording. Prediction-pipeline time alone was **68.09 seconds day / 67.67 seconds night**. These figures include the first batch; no warmup frames were discarded.
+
 Full-output timing includes decoding, overlays and encoding; it excludes model setup and Drive transfer. A reader may be skipped when its region is unusable. Different precision and batch settings can change predictions near decision thresholds; the hardware runs are not an accuracy comparison. The clear empty-bar example still produces a false RPM reading.
 
 ## Download integrity
